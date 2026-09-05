@@ -14,7 +14,340 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      check_ins: {
+        Row: {
+          created_at: string
+          id: string
+          latitude: number | null
+          longitude: number | null
+          session_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          session_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          session_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "check_ins_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "safety_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      emergencies: {
+        Row: {
+          created_at: string
+          detected_at: string
+          id: string
+          last_checkin_at: string | null
+          latitude: number | null
+          location_label: string | null
+          longitude: number | null
+          resolution: string | null
+          resolved_at: string | null
+          responder_status: string
+          responder_visible: boolean
+          response_started_at: string | null
+          services_notified_at: string | null
+          status: string
+          type: string
+          user_id: string
+          user_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          detected_at?: string
+          id?: string
+          last_checkin_at?: string | null
+          latitude?: number | null
+          location_label?: string | null
+          longitude?: number | null
+          resolution?: string | null
+          resolved_at?: string | null
+          responder_status?: string
+          responder_visible?: boolean
+          response_started_at?: string | null
+          services_notified_at?: string | null
+          status?: string
+          type?: string
+          user_id: string
+          user_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          detected_at?: string
+          id?: string
+          last_checkin_at?: string | null
+          latitude?: number | null
+          location_label?: string | null
+          longitude?: number | null
+          resolution?: string | null
+          resolved_at?: string | null
+          responder_status?: string
+          responder_visible?: boolean
+          response_started_at?: string | null
+          services_notified_at?: string | null
+          status?: string
+          type?: string
+          user_id?: string
+          user_name?: string | null
+        }
+        Relationships: []
+      }
+      emergency_contacts: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          is_primary: boolean
+          name: string
+          phone: string | null
+          priority: number
+          relationship: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary?: boolean
+          name: string
+          phone?: string | null
+          priority?: number
+          relationship?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary?: boolean
+          name?: string
+          phone?: string | null
+          priority?: number
+          relationship?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      emergency_notifications: {
+        Row: {
+          contact_id: string | null
+          contact_name: string | null
+          emergency_id: string
+          id: string
+          notification_type: string
+          sent_at: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          contact_name?: string | null
+          emergency_id: string
+          id?: string
+          notification_type?: string
+          sent_at?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          contact_name?: string | null
+          emergency_id?: string
+          id?: string
+          notification_type?: string
+          sent_at?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emergency_notifications_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "emergency_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emergency_notifications_emergency_id_fkey"
+            columns: ["emergency_id"]
+            isOneToOne: false
+            referencedRelation: "emergencies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      safety_events: {
+        Row: {
+          created_at: string
+          detail: string | null
+          emergency_id: string | null
+          event_type: string
+          id: string
+          latitude: number | null
+          longitude: number | null
+          status: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          detail?: string | null
+          emergency_id?: string | null
+          event_type: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          status?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          detail?: string | null
+          emergency_id?: string | null
+          event_type?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          status?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "safety_events_emergency_id_fkey"
+            columns: ["emergency_id"]
+            isOneToOne: false
+            referencedRelation: "emergencies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      safety_sessions: {
+        Row: {
+          created_at: string
+          destination: string | null
+          ended_at: string | null
+          escalate_at: string | null
+          expected_arrival: string | null
+          grace_seconds: number
+          id: string
+          interval_seconds: number
+          mode: string
+          next_checkin_at: string
+          started_at: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          destination?: string | null
+          ended_at?: string | null
+          escalate_at?: string | null
+          expected_arrival?: string | null
+          grace_seconds?: number
+          id?: string
+          interval_seconds?: number
+          mode?: string
+          next_checkin_at?: string
+          started_at?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          destination?: string | null
+          ended_at?: string | null
+          escalate_at?: string | null
+          expected_arrival?: string | null
+          grace_seconds?: number
+          id?: string
+          interval_seconds?: number
+          mode?: string
+          next_checkin_at?: string
+          started_at?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      safety_settings: {
+        Row: {
+          default_interval_seconds: number
+          grace_seconds: number
+          location_sharing: boolean
+          notifications_enabled: boolean
+          preferred_mode: string
+          services_delay_seconds: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          default_interval_seconds?: number
+          grace_seconds?: number
+          location_sharing?: boolean
+          notifications_enabled?: boolean
+          preferred_mode?: string
+          services_delay_seconds?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          default_interval_seconds?: number
+          grace_seconds?: number
+          location_sharing?: boolean
+          notifications_enabled?: boolean
+          preferred_mode?: string
+          services_delay_seconds?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
