@@ -8,9 +8,9 @@ export async function startSession(input: {
   mode: string;
   intervalSeconds: number;
   graceSeconds: number;
-  destination?: string | null;
-  expectedArrival?: string | null;
-  coords?: Coords | null;
+  destination?: string | null | undefined;
+  expectedArrival?: string | null | undefined;
+  coords?: Coords | null | undefined;
 }) {
   await supabase
     .from("safety_sessions")
@@ -70,9 +70,9 @@ export async function startSession(input: {
 
 export async function completeCheckIn(input: {
   userId: string;
-  session?: SessionRow | null;
-  coords?: Coords | null;
-  detail?: string;
+  session?: SessionRow | null | undefined;
+  coords?: Coords | null | undefined;
+  detail?: string | undefined;
 }) {
   await supabase.from("check_ins").insert({
     user_id: input.userId,
@@ -140,10 +140,10 @@ export async function markMissedCheckIn(session: SessionRow) {
 
 export async function requestHelp(input: {
   userId: string;
-  userName?: string | null;
-  session?: SessionRow | null;
-  coords?: Coords | null;
-  lastCheckinAt?: string | null;
+  userName?: string | null | undefined;
+  session?: SessionRow | null | undefined;
+  coords?: Coords | null | undefined;
+  lastCheckinAt?: string | null | undefined;
   type?: "manual" | "missed_checkin" | "travel_overdue";
 }) {
   const emergency = await triggerEmergency({
@@ -165,9 +165,9 @@ export async function requestHelp(input: {
 export async function markSafe(input: {
   userId: string;
   emergency: EmergencyRow;
-  session?: SessionRow | null;
-  coords?: Coords | null;
-  cancelled?: boolean;
+  session?: SessionRow | null | undefined;
+  coords?: Coords | null | undefined;
+  cancelled?: boolean | undefined;
 }) {
   await resolveEmergency(
     input.emergency,

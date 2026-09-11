@@ -28,10 +28,10 @@ export const EMERGENCY_TYPE_LABELS: Record<string, string> = {
 /** Creates an emergency, alerts stored contacts in priority order and writes history. */
 export async function triggerEmergency(input: {
   userId: string;
-  userName?: string | null;
+  userName?: string | null | undefined;
   type: "manual" | "missed_checkin" | "travel_overdue";
-  coords?: Coords | null;
-  lastCheckinAt?: string | null;
+  coords?: Coords | null | undefined;
+  lastCheckinAt?: string | null | undefined;
 }) {
   const { data: existing } = await supabase
     .from("emergencies")

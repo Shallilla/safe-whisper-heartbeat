@@ -7,8 +7,8 @@ export function MiniMap({
   latitude,
   longitude,
 }: {
-  latitude?: number | null;
-  longitude?: number | null;
+  latitude?: number | null | undefined;
+  longitude?: number | null | undefined;
 }) {
   if (latitude == null || longitude == null) {
     return (
@@ -38,13 +38,13 @@ export function LocationPanel({
   refreshing,
   note,
 }: {
-  latitude?: number | null;
-  longitude?: number | null;
-  label?: string | null;
-  capturedAt?: string | null;
-  onRefresh?: () => void;
-  refreshing?: boolean;
-  note?: string | null;
+  latitude?: number | null | undefined;
+  longitude?: number | null | undefined;
+  label?: string | null | undefined;
+  capturedAt?: string | null | undefined;
+  onRefresh?: () => void | undefined;
+  refreshing?: boolean | undefined;
+  note?: string | null | undefined;
 }) {
   const url = mapsUrl(latitude, longitude);
   return (
