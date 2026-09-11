@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { History } from "lucide-react";
 
 import { useEvents } from "@/hooks/useLifeline";
-import { formatDate, formatTime } from "@/lib/lifeline";
+import { formatEventDate, formatTime } from "@/lib/lifeline";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/history")({
@@ -18,9 +18,9 @@ export const Route = createFileRoute("/_authenticated/history")({
 });
 
 const statusStyles: Record<string, string> = {
-  safe: "bg-safe-soft text-safe",
+  ok: "bg-safe-soft text-safe",
   warning: "bg-warn-soft text-warn",
-  danger: "bg-danger-soft text-danger",
+  critical: "bg-danger-soft text-danger",
   info: "bg-muted text-muted-foreground",
 };
 
@@ -43,7 +43,7 @@ function HistoryPage() {
           {events.map((e) => (
             <li key={e.id} className="panel flex flex-wrap items-start gap-3 p-4">
               <div className="numeric w-28 shrink-0 text-sm text-muted-foreground">
-                <p>{formatDate(e.created_at)}</p>
+                <p>{formatEventDate(e.created_at)}</p>
                 <p>{formatTime(e.created_at)}</p>
               </div>
               <div className="min-w-0 flex-1">

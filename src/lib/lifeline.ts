@@ -72,6 +72,11 @@ export function formatTime(value?: string | null) {
   return new Date(value).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
+export function formatEventDate(value?: string | null) {
+  if (!value) return "—";
+  return new Date(value).toLocaleDateString(undefined, { day: "2-digit", month: "short" });
+}
+
 export function formatDateTime(value?: string | null) {
   if (!value) return "—";
   return new Date(value).toLocaleString([], {

@@ -25,7 +25,8 @@ export const Route = createFileRoute("/_authenticated/responder")({
 
 function ResponderPage() {
   const queryClient = useQueryClient();
-  const { active, history, isLoading } = useResponderEmergencies();
+  const { data: active = [], isLoading } = useResponderEmergencies("active");
+  const { data: history = [] } = useResponderEmergencies("history");
   const [busy, setBusy] = useState<string | null>(null);
   const [, setTick] = useState(0);
 

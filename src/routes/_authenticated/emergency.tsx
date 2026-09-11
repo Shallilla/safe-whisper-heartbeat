@@ -56,7 +56,7 @@ function EmergencyPage() {
       await markSafe({
         userId: user!.id,
         emergency,
-        session,
+        session: session ?? null,
         coords: location ?? coords,
         cancelled,
       });
