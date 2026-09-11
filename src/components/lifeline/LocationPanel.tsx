@@ -42,7 +42,7 @@ export function LocationPanel({
   longitude?: number | null | undefined;
   label?: string | null | undefined;
   capturedAt?: string | null | undefined;
-  onRefresh?: () => void | undefined;
+  onRefresh?: (() => void) | undefined;
   refreshing?: boolean | undefined;
   note?: string | null | undefined;
 }) {
