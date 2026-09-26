@@ -6,8 +6,6 @@ Lifeline is a personal safety web app that checks in on you, and escalates to yo
 
 🔗 **[Live Demo](https://safe-whisper-heartbeat.lovable.app)** | 📦 [Repo](https://github.com/Shallilla/safe-whisper-heartbeat)
 
-![Lifeline Dashboard Screenshot](./Screenshot 2026-09-26 161950.png)
-*Screenshot placeholder — swap in a shot of the dashboard mid-countdown or the Emergency Mode screen.
 
 ---
 
@@ -72,13 +70,7 @@ npm run dev
 
 You'll need a Supabase project (URL + anon key) wired up for auth and the tables above — see `supabase/migrations` for the schema.
 
-## Screenshots
 
-| Dashboard | Check-in Countdown | Emergency Mode | Responder View |
-|---|---|---|---|
-| ![Dashboard](./assets/dashboard.png) | ![Check-in](./assets/checkin.png) | ![Emergency](./assets/emergency.png) | ![Responder](./assets/responder.png) |
-
-*(placeholders — drop your own screenshots/GIFs of the live app into `./assets/` before submitting)*
 
 ## What's Next
 
