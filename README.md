@@ -81,8 +81,5 @@ You'll need a Supabase project (URL + anon key) wired up for auth and the tables
 
 ## Team
 
-Solo build for ShipHathon.
+Solo build.
 
-## License
-
-MIT License — see [LICENSE](./LICENSE) for details.
